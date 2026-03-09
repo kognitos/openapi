@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/kognitos/openapi/compare/v1.0.0...v1.0.1) (2026-03-09)
+
+
+### Bug Fixes
+
+* use repository_dispatch for cross-repo trigger ([#3](https://github.com/kognitos/openapi/issues/3)) ([fc25f0a](https://github.com/kognitos/openapi/commit/fc25f0a19c449b6af06167d21ebac8848c78ef0e))
+
 # 1.0.0 (2026-03-09)
 
 
