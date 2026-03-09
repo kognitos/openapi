@@ -25,5 +25,5 @@ jobs:
             -H "Authorization: token ${{ steps.app-token.outputs.token }}" \
             -H "Accept: application/vnd.github.v3+json" \
             -H "Content-Type: application/json" \
-            https://api.github.com/repos/kognitos/kognitos-js/actions/workflows/generate.yml/dispatches \
-            --data '{"ref":"main","inputs":{"openapi_version":"${{ github.event.release.tag_name }}"}}'
+            https://api.github.com/repos/kognitos/kognitos-js/dispatches \
+            --data '{"event_type":"openapi-updated","client_payload":{"openapi_version":"${{ github.event.release.tag_name }}"}}'
