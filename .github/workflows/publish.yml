@@ -1,0 +1,29 @@
+name: Publish
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  trigger-kognitos-js:
+    name: Trigger kognitos-js build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.SEMVER_APP_ID }}
+          private-key: ${{ secrets.SEMVER_APP_PRIVATE_KEY }}
+          owner: kognitos
+          repositories: kognitos-js
+
+      - name: Trigger kognitos-js workflow
+        run: |
+          curl --fail-with-body \
+            -X POST \
+            -H "Authorization: token ${{ steps.app-token.outputs.token }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Content-Type: application/json" \
+            https://api.github.com/repos/kognitos/kognitos-js/actions/workflows/generate.yml/dispatches \
+            --data '{"ref":"main","inputs":{"openapi_version":"${{ github.event.release.tag_name }}"}}'
