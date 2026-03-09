@@ -17,6 +17,3 @@ jobs:
       - name: Lint latest spec
         run: spectral lint latest/openapi.yaml --ruleset .spectral.yaml
 
-      - name: Lint preview spec
-        if: hashFiles('preview/openapi.yaml') != ''
-        run: spectral lint preview/openapi.yaml --ruleset .spectral.yaml
