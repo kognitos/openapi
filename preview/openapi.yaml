@@ -1,0 +1,15 @@
+# Preview OpenAPI spec — placeholder
+# Copy from latest/ and add preview endpoints here
+openapi: 3.0.0
+info:
+  title: Kognitos API (Preview)
+  description: REST API for Kognitos platform — includes preview endpoints
+  version: 1.0.0-preview
+paths: {}
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - BearerAuth: []
