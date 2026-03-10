@@ -4,9 +4,11 @@ on:
   release:
     types: [created]
 
+permissions: {}
+
 jobs:
-  trigger-kognitos-js:
-    name: Trigger kognitos-js build
+  trigger-kognitos-node:
+    name: Trigger kognitos-node build
     runs-on: ubuntu-latest
     steps:
       - name: Generate GitHub App token
@@ -16,14 +18,17 @@ jobs:
           app-id: ${{ secrets.SEMVER_APP_ID }}
           private-key: ${{ secrets.SEMVER_APP_PRIVATE_KEY }}
           owner: kognitos
-          repositories: kognitos-js
+          repositories: kognitos-node
 
-      - name: Trigger kognitos-js workflow
+      - name: Trigger kognitos-node workflow
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          OPENAPI_VERSION: ${{ github.event.release.tag_name }}
         run: |
           curl --fail-with-body \
             -X POST \
-            -H "Authorization: token ${{ steps.app-token.outputs.token }}" \
+            -H "Authorization: token $GH_TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
             -H "Content-Type: application/json" \
-            https://api.github.com/repos/kognitos/kognitos-js/dispatches \
-            --data '{"event_type":"openapi-updated","client_payload":{"openapi_version":"${{ github.event.release.tag_name }}"}}'
+            https://api.github.com/repos/kognitos/kognitos-node/dispatches \
+            --data "{\"event_type\":\"openapi-updated\",\"client_payload\":{\"openapi_version\":\"$OPENAPI_VERSION\"}}"
