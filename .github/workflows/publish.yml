@@ -4,6 +4,8 @@ on:
   release:
     types: [created]
 
+permissions: {}
+
 jobs:
   trigger-kognitos-node:
     name: Trigger kognitos-node build
