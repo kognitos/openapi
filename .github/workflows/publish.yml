@@ -52,8 +52,18 @@ jobs:
           VERSION: ${{ github.event.release.tag_name }}
           BODY: ${{ github.event.release.body }}
         run: |
-          # Escape the release body for JSON
-          BODY_JSON=$(jq -n --arg body "$BODY" '$body')
+          jq -n \
+            --arg version "$VERSION" \
+            --arg changelog "$BODY" \
+            --arg release_url "https://github.com/kognitos/openapi/releases/tag/$VERSION" \
+            '{
+              event_type: "openapi-release",
+              client_payload: {
+                version: $version,
+                changelog: $changelog,
+                release_url: $release_url
+              }
+            }' > /tmp/dispatch.json
 
           curl --fail-with-body \
             -X POST \
@@ -61,11 +71,4 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Content-Type: application/json" \
             https://api.github.com/repos/kognitos/gitbook-agent/dispatches \
-            --data "{
-              \"event_type\": \"openapi-release\",
-              \"client_payload\": {
-                \"version\": \"$VERSION\",
-                \"changelog\": $BODY_JSON,
-                \"release_url\": \"https://github.com/kognitos/openapi/releases/tag/$VERSION\"
-              }
-            }"
+            --data @/tmp/dispatch.json
