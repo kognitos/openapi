@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/kognitos/openapi/compare/v1.0.1...v1.1.0) (2026-04-14)
+
+
+### Features
+
+* add workspace-scoped file endpoints (MAN-3290) ([#8](https://github.com/kognitos/openapi/issues/8)) ([1f7d177](https://github.com/kognitos/openapi/commit/1f7d17708f1fda263c24fc25a53cc4a75c5a940a))
+* notify docs agent on new releases ([#6](https://github.com/kognitos/openapi/issues/6)) ([2ed0ce1](https://github.com/kognitos/openapi/commit/2ed0ce1e84bf9528ccae7b690105cd87afb211c9))
+
 ## [1.0.1](https://github.com/kognitos/openapi/compare/v1.0.0...v1.0.1) (2026-03-09)
 
 
