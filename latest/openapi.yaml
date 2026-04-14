@@ -4053,12 +4053,12 @@ paths:
             type: string
       tags:
         - Runs
-  "/api/v1/organizations/{organization_id}/files:upload":
+  "/api/v1/organizations/{organization_id}/workspaces/{workspace_id}/files:upload":
     post:
       summary: Upload File
       description: |-
-        The lifetime of the file is the lifetime of the organization, ie,
-        if the organization is deleted, its file will also be deleted.
+        Upload a file scoped to a specific workspace. The file's lifetime is tied
+        to the organization. This is the preferred endpoint for new file uploads.
       operationId: UploadFile
       responses:
         "200":
@@ -4085,6 +4085,11 @@ paths:
                 $ref: "#/components/schemas/rpcStatus"
       parameters:
         - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: workspace_id
           in: path
           required: true
           schema:
@@ -4116,7 +4121,7 @@ paths:
               type: object
         description: File upload data
         required: true
-  "/api/v1/organizations/{organization_id}/files/{file}:download":
+  "/api/v1/organizations/{organization_id}/workspaces/{workspace_id}/files/{file}:download":
     get:
       summary: Download File
       operationId: DownloadFile
@@ -4153,6 +4158,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: workspace_id
+          in: path
+          required: true
+          schema:
+            type: string
         - name: file
           in: path
           required: true
@@ -4160,7 +4170,7 @@ paths:
             type: string
       tags:
         - Files
-  "/api/v1/organizations/{organization_id}/files/{file}/metadata":
+  "/api/v1/organizations/{organization_id}/workspaces/{workspace_id}/files/{file}/metadata":
     get:
       summary: Get File Metadata
       operationId: GetFileMetadata
@@ -4183,6 +4193,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: workspace_id
+          in: path
+          required: true
+          schema:
+            type: string
         - name: file
           in: path
           required: true
@@ -4190,7 +4205,7 @@ paths:
             type: string
       tags:
         - Files
-  "/api/v1/organizations/{organization_id}/files/{file}":
+  "/api/v1/organizations/{organization_id}/workspaces/{workspace_id}/files/{file}":
     delete:
       summary: Delete File
       operationId: DeleteFile
@@ -4214,6 +4229,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: workspace_id
+          in: path
+          required: true
+          schema:
+            type: string
         - name: file
           in: path
           required: true
@@ -4221,7 +4241,7 @@ paths:
             type: string
       tags:
         - Files
-  "/api/v1/organizations/{organization_id}/files:generateUploadUrl":
+  "/api/v1/organizations/{organization_id}/workspaces/{workspace_id}/files:generateUploadUrl":
     post:
       summary: Generate Upload Url
       operationId: GenerateUploadUrl
@@ -4244,6 +4264,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: workspace_id
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -4252,7 +4277,7 @@ paths:
         required: true
       tags:
         - Files
-  "/api/v1/organizations/{organization_id}/files/{file}:generateDownloadUrl":
+  "/api/v1/organizations/{organization_id}/workspaces/{workspace_id}/files/{file}:generateDownloadUrl":
     post:
       summary: Generate Download Url
       operationId: GenerateDownloadUrl
@@ -4271,6 +4296,11 @@ paths:
                 $ref: "#/components/schemas/rpcStatus"
       parameters:
         - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: workspace_id
           in: path
           required: true
           schema:
