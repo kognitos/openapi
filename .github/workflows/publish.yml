@@ -41,8 +41,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
-          app-id: ${{ secrets.SEMVER_APP_ID }}
-          private-key: ${{ secrets.SEMVER_APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.GITBOOK_AGENT_APP_ID }}
+          private-key: ${{ secrets.GITBOOK_AGENT_APP_PRIVATE_KEY }}
           owner: kognitos
           repositories: gitbook-agent
 
