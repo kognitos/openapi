@@ -1065,7 +1065,6 @@ paths:
               title: Automation to update and new values for the automation.
               required:
                 - display_name
-                - automation
         description: Automation to update and new values for the automation.
         required: true
       tags:
@@ -5972,8 +5971,6 @@ paths:
               title: |-
                 The guide entry to update.
                 The guide entry's `name` field is used to identify the entry to update.
-              required:
-                - guide_entry
         description: |-
           The guide entry to update.
           The guide entry's `name` field is used to identify the entry to update.
@@ -25630,7 +25627,6 @@ paths:
               title: The asset with updated fields. The name field identifies which asset.
               required:
                 - display_name
-                - asset
         description: The asset with updated fields. The name field identifies which asset.
         required: true
       tags:
@@ -26328,7 +26324,6 @@ paths:
                 The name field identifies which folder to update.
               required:
                 - display_name
-                - folder
         description: |-
           The folder with updated fields (display_name and/or parent_folder_name).
           The name field identifies which folder to update.
@@ -26986,7 +26981,6 @@ paths:
               title: The collection with updated fields. The name field identifies which collection.
               required:
                 - display_name
-                - collection
         description: The collection with updated fields. The name field identifies which collection.
         required: true
       tags:
@@ -27086,8 +27080,6 @@ paths:
               type: object
               additionalProperties:
                 $ref: "#/components/schemas/commonv1Value"
-              required:
-                - row
         description: |-
           Row data. Keys are column names; values carry their full Jarvis
           runtime type via `common.v1.Value`. Server assigns `__row_id__` to
@@ -27219,8 +27211,6 @@ paths:
               type: object
               additionalProperties:
                 $ref: "#/components/schemas/commonv1Value"
-              required:
-                - row
         description: |-
           Updated row data, keyed by column name. Values carry their full Jarvis
           runtime type via `common.v1.Value`.
@@ -29210,7 +29200,6 @@ paths:
                 - work_item
                 - title
                 - body
-                - guide
         description: The guide, carrying its resource name, current etag and fields to change.
         required: true
       tags:
